@@ -1,0 +1,6 @@
+@SubSystem_HostAddress = http://localhost:5250
+
+GET {{SubSystem_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
