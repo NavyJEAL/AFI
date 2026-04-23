@@ -8,6 +8,11 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddHttpClient<SubscriberApiClient>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["SubSystemApi:BaseUrl"]!);
+});
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
