@@ -1,14 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using AdSystem.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddHttpClient();
-builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddHttpClient<SubscriberApiClient>(client =>
+builder.Services.AddHttpClient<WebApiClient>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["SubSystemApi:BaseUrl"]!);
 });
@@ -16,11 +14,6 @@ builder.Services.AddHttpClient<SubscriberApiClient>(client =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

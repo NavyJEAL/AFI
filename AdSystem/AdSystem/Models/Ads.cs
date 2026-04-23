@@ -1,3 +1,4 @@
+namespace AdSystem.Models;
 public class Ads
 {
 	public int AdID { get; set; }

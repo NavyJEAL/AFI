@@ -1,3 +1,4 @@
+namespace AdSystem.Models;
 public class Annonsorer
 {
 	public int AnnonsorID { get; set; }	
